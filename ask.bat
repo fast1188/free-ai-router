@@ -1,3 +1,3 @@
 @echo off
 chcp 65001 >nul
-py D:\Claude解决各种问题\smart_router.py %*
+py D:\Github开源项目\smart_router.py %*

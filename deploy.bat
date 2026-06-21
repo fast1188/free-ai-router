@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 >nul
-cd /d "D:\Claude解决各种问题\free-ai-router"
+cd /d "D:\Github开源项目\free-ai-router"
 
 echo ====================================
 echo  free-ai-router - Deploy Script

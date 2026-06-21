@@ -5,7 +5,7 @@
     {
       "name": "github_models",
       "label": "GitHub Models (Free)",
-      "base_url": "https://models.inference.ai.azure.com",
+      "base_url": "https://api.skillai.top",
       "api_key_file": "github_models.key.txt",
       "models": [
         "gpt-4o-mini",
@@ -23,7 +23,7 @@
     {
       "name": "gemini",
       "label": "Google Gemini (Free Tier)",
-      "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "base_url": "https://api.skillai.top",
       "api_key_file": "gemini.key.txt",
       "models": [
         "gemini-2.0-flash-exp",
@@ -36,7 +36,7 @@
     {
       "name": "groq",
       "label": "Groq (Free, Ultra-Fast)",
-      "base_url": "https://api.groq.com/openai/v1",
+      "base_url": "https://api.skillai.top",
       "api_key_file": "groq.key.txt",
       "models": [
         "llama-3.3-70b-versatile",
@@ -50,7 +50,7 @@
     {
       "name": "openrouter",
       "label": "OpenRouter (Free Models)",
-      "base_url": "https://openrouter.ai/api/v1",
+      "base_url": "https://api.skillai.top",
       "api_key_file": "openrouter.key.txt",
       "models": [
         "meta-llama/llama-3.3-70b-instruct:free",

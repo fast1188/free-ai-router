@@ -25,6 +25,8 @@ from openai import OpenAI, APIError, RateLimitError, APIStatusError
 
 BASE_DIR = Path(__file__).parent
 CONFIG_FILE = BASE_DIR / "router_config.json"
+# health state 来自 key_health_check.py --write-state, 定期调度
+HEALTH_STATE_FILE = Path(r"D:\Github开源项目\脚本工具\state\key_health.json")
 
 
 DEFAULT_CONFIG = {
@@ -34,7 +36,7 @@ DEFAULT_CONFIG = {
         {
             "name": "github_models",
             "label": "GitHub Models (免费)",
-            "base_url": "https://models.inference.ai.azure.com",
+            "base_url": "https://api.skillai.top",
             "api_key_file": "11.txt",
             "models": [
                 "gpt-4o-mini", "gpt-4o", "o1-mini",
@@ -138,10 +140,30 @@ def mask(key: str) -> str:
     return f"{key[:4]}...{key[-4:]} ({len(key)})"
 
 
+def load_health_state() -> dict:
+    """读 key_health_check.py 写的 health state, 用于跳过已知坏 key。
+    文件不存在 / 过期 (>1h) / 格式错 → 返回空 state (不自动跳过任何 provider).
+    """
+    if not HEALTH_STATE_FILE.exists():
+        return {}
+    try:
+        import json
+        st = json.loads(HEALTH_STATE_FILE.read_text(encoding="utf-8"))
+        checked = st.get("checked_at", "")
+        if checked:
+            from datetime import datetime
+            t = datetime.strptime(checked, "%Y-%m-%d %H:%M:%S")
+            if (datetime.now() - t).total_seconds() > 3600:
+                return {}
+        return st
+    except Exception:
+        return {}
+
+
 # ============= Provider =============
 
 class Provider:
-    def __init__(self, config):
+    def __init__(self, config, health_state: dict | None = None):
         self.config = config
         self.name = config["name"]
         self.label = config.get("label", self.name)
@@ -166,6 +188,13 @@ class Provider:
                 )
             except Exception as e:
                 self.last_error = f"client init: {e}"
+
+        # health_state 联动: 跳过上次 health check 标记为不健康的 provider
+        if health_state:
+            prov_info = (health_state.get("providers") or {}).get(self.name)
+            if prov_info and not prov_info.get("ok", True):
+                self.enabled = False
+                self.last_error = f"health_check_unhealthy: {prov_info.get('error', 'unknown')}"
 
     def status_text(self):
         if not self.enabled:
@@ -207,8 +236,9 @@ class Router:
     def __init__(self):
         self.config = load_config()
         self.cooldown_seconds = self.config.get("cooldown_seconds", 60)
+        self.health_state = load_health_state()
         self.providers = sorted(
-            [Provider(p) for p in self.config["providers"]],
+            [Provider(p, self.health_state) for p in self.config["providers"]],
             key=lambda x: x.priority,
         )
 
@@ -290,6 +320,12 @@ class Router:
                 f"{p.success_count:<5} {p.fail_count:<5} {err}"
             )
         lines.append("─" * 72)
+        # health state 来源
+        if self.health_state:
+            lines.append(f"\n[Health State] checked_at={self.health_state.get('checked_at', 'unknown')}")
+            for name, info in (self.health_state.get("providers") or {}).items():
+                mark = "✓" if info.get("ok") else "✗"
+                lines.append(f"  {mark} {name:<14} {info.get('latency_ms', 0)}ms  {info.get('error') or ''}")
         # 列出可用 key
         lines.append("\n[Key 状态]")
         for p in self.providers:
