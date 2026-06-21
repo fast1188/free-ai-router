@@ -249,3 +249,53 @@ Scan to join our WeChat group for discussion and updates:
 > Save your QR image as `assets/wechat-qr.png` to display here:
 >
 > ![WeChat Group QR](assets/wechat-qr.png)
+
+
+## v0.2 更新 (2026-06-21 Day 13 A 档)
+
+### ✨ 新增 OpenAI 兼容 HTTP server (server.py)
+
+把 free-ai-router 8 provider 暴露成 OpenAI `/v1/chat/completions` 标准 endpoint. **sillytavern / LM Studio / Open WebUI** 等工具只需把 base URL 改成 `http://localhost:8765/v1` 就能用.
+
+**用法**:
+```bash
+py server.py                       # 默认 :8765
+py server.py --port 9000           # 自定义端口
+py server.py --host 0.0.0.0        # 局域网暴露
+```
+
+**端点**:
+- `GET  /v1/models` - 列出所有 provider 的 models (聚合)
+- `GET  /health` - 健康检查
+- `POST /v1/chat/completions` - OpenAI 兼容 chat (走 smart_router)
+- `POST /v1/completions` - legacy 单 prompt 模式
+
+**示例** (LM Studio 配):
+```
+Base URL: http://localhost:8765/v1
+Model: MiniMax-M3  (或 deepseek-chat, deepseek-reasoner...)
+```
+
+**sillytavern 配**:
+```
+API: OpenAI compatible
+Base URL: http://localhost:8765/v1
+Model: deepseek-chat
+```
+
+**测试** (9 个 unittest 全过):
+```bash
+py -X utf8 -m unittest test_server.py -v
+# 9/9: list_models / handle_chat (basic/empty_messages/default_model/meta/id_format/usage) / handle_completions (legacy/empty_prompt)
+```
+
+### v0.2 vs v0.1
+
+| 项 | v0.1 (06-11) | v0.2 (06-21) |
+|---|------|------|
+| 入口 | CLI (`py smart_router.py`) | CLI + HTTP server |
+| OpenAI 兼容 | ❌ | ✅ `/v1/chat/completions` |
+| sillytavern 接入 | ❌ | ✅ 直接 base URL |
+| 8 provider 调度 | ✅ | ✅ |
+| 健康跳过 | ✅ | ✅ |
+| 文件 | smart_router.py | smart_router.py + server.py + test_server.py |
