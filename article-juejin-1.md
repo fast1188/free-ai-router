@@ -21,7 +21,7 @@
 
 ## 写在前面
 
-作为一个长期被 Claude Code 和 Codex "token 跑光"困扰的开发者,我前前后后试过十几种"白嫖"方案。最后沉淀下来一个开源工具:[free-ai-router](https://github.com/fast118/free-ai-router) —— 一个多 AI 后端链式 fallback 路由器。
+作为一个长期被 Claude Code 和 Codex "token 跑光"困扰的开发者,我前前后后试过十几种"白嫖"方案。最后沉淀下来一个开源工具:[free-ai-router](https://github.com/fast1188/free-ai-router) —— 一个多 AI 后端链式 fallback 路由器。
 
 今天分享的就是工具背后的 4 个免费后端,**全部免费**,**全部能直接调用 GPT-4o / Claude 级模型**。
 
@@ -175,14 +175,14 @@ response = client.chat.completions.create(
 
 上面 4 个 API 各有各的好处,但切换起来很麻烦。所以我做了这个工具:
 
-**[free-ai-router](https://github.com/fast118/free-ai-router)**
+**[free-ai-router](https://github.com/fast1188/free-ai-router)**
 
 **核心功能:链式 fallback —— 一个挂了自动切下一个,完全无需手动。**
 
 ### 5 分钟上手
 
 ```bash
-git clone https://github.com/fast118/free-ai-router
+git clone https://github.com/fast1188/free-ai-router
 cd free-ai-router
 pip install -r requirements.txt
 
@@ -214,7 +214,7 @@ python smart_router.py --stream "写首诗"
 
 如果工具对你有帮助,**点个 Star** 支持一下:
 
-> ⭐ https://github.com/fast118/free-ai-router
+> ⭐ https://github.com/fast1188/free-ai-router
 
 **进微信群交流**(项目 README 有二维码,或者扫码下图):
 

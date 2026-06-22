@@ -42,7 +42,7 @@ In your local repo:
 
 ```bash
 # GitHub (primary, international)
-git remote add github https://github.com/fast118/free-ai-router.git
+git remote add github https://github.com/fast1188/free-ai-router.git
 
 # Gitee (primary, China)
 git remote add gitee https://gitee.com/wudijia2026/free-ai-router.git

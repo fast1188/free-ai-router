@@ -65,7 +65,7 @@
 
 ## 二、解决方案:free-ai-router
 
-我做了这个开源工具:[free-ai-router](https://github.com/fast118/free-ai-router)
+我做了这个开源工具:[free-ai-router](https://github.com/fast1188/free-ai-router)
 
 **核心思路:** 当主后端(Claude / GPT)挂了,自动切到 4 个**完全免费**的后端:
 
@@ -83,7 +83,7 @@
 ### Step 1:克隆
 
 \`\`\`bash
-git clone https://github.com/fast118/free-ai-router
+git clone https://github.com/fast1188/free-ai-router
 cd free-ai-router
 \`\`\`
 
@@ -136,7 +136,7 @@ py smart_router.py -f main.py "找出所有 bug 和改进点"
 
 ## 六、写在最后
 
-⭐ 项目地址:https://github.com/fast118/free-ai-router
+⭐ 项目地址:https://github.com/fast1188/free-ai-router
 
 进微信群交流(见项目 README):
 [群二维码]

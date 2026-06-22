@@ -40,7 +40,7 @@
 
 # 四、Star + 加群
 
-项目地址:https://github.com/fast118/free-ai-router
+项目地址:https://github.com/fast1188/free-ai-router
 
 ---
 

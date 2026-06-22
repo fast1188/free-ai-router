@@ -7,10 +7,10 @@
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/fast118/free-ai-router)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/fast1188/free-ai-router)
 [![Gitee](https://img.shields.io/badge/Gitee-C71D23?style=for-the-badge&logo=gitee&logoColor=white)](https://gitee.com/wudijia2026/free-ai-router)
 
-> 🌐 **控制台总览:** [fast118.github.io/console](https://fast118.github.io/console/) - 看所有 fast118 开源项目
+> 🌐 **控制台总览:** [fast1188.github.io/console](https://fast1188.github.io/console/) - 看所有 fast118 开源项目
 
 [English](#english) | [中文](#中文)
 
@@ -205,7 +205,7 @@ Supports 4 free AI providers (GitHub Models / Gemini / Groq / OpenRouter) with *
 **Prerequisites:** Python 3.8+
 
 ```bash
-git clone https://github.com/fast118/free-ai-router.git
+git clone https://github.com/fast1188/free-ai-router.git
 cd free-ai-router
 pip install -r requirements.txt
 cp router_config.example.json router_config.json

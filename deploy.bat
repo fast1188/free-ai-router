@@ -19,7 +19,7 @@ echo.
 
 echo [2/5] Adding GitHub remote...
 git remote remove github 2>nul
-git remote add github https://github.com/fast118/free-ai-router.git
+git remote add github https://github.com/fast1188/free-ai-router.git
 echo Done.
 echo.
 
@@ -54,7 +54,7 @@ echo.
 echo ====================================
 echo  Done!
 echo ====================================
-echo GitHub: https://github.com/fast118/free-ai-router
+echo GitHub: https://github.com/fast1188/free-ai-router
 echo Gitee:  https://gitee.com/wudijia2026/free-ai-router
 echo ====================================
 pause
