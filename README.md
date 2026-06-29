@@ -299,3 +299,12 @@ py -X utf8 -m unittest test_server.py -v
 | 8 provider 调度 | ✅ | ✅ |
 | 健康跳过 | ✅ | ✅ |
 | 文件 | smart_router.py | smart_router.py + server.py + test_server.py |
+
+## 🔗 Related Projects
+
+| Project | Description |
+|---------|-------------|
+| [free-ai-router-webui](https://github.com/fast1188/free-ai-router-webui) | Web admin panel → [Live](https://fast1188.github.io/free-ai-router-webui/) |
+| [ai-agent-skills](https://github.com/fast1188/ai-agent-skills) | AI coding agent skills |
+| [cc-switch](https://github.com/fast1188/cc-switch) | Claude Code API switcher CLI |
+| [console](https://github.com/fast1188/console) | Unified dashboard → [Live](https://fast1188.github.io/console/) |
